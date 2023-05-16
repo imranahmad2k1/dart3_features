@@ -8,6 +8,11 @@ void main(List<String> arguments) {
       .stringsentence); //Accessing named parameter string value
   print(diffTypeDart3PatternsList
       .doublevalue); //Accessing named parameter double value
+
+  final (stringvalue, doublevalue) =
+      diffTypesDart3Patterns2(); //assigning first parameter to stringvalue, and second parameter to doublevalue
+  print(stringvalue); //accessing first parameter, using patterns dart 3
+  print(doublevalue); //accessing second parameter, using patterns dart 3
 }
 
 //BetterWay Dart3 for returning different data types
@@ -17,4 +22,8 @@ void main(List<String> arguments) {
 
 ({String stringsentence, double doublevalue}) diffTypesDart3Patterns() {
   return (stringsentence: "Advanced: My data type is Known", doublevalue: 50.0);
+}
+
+(String, double) diffTypesDart3Patterns2() {
+  return ("String value", 90.0);
 }
