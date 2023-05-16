@@ -1,33 +1,26 @@
 void main(List<String> arguments) {
-  final jsoned = {
-    "userID": 2,
-    "name": "Imran",
-    "job": "Coder",
-  };
+  final Human imran = Human("Imran Ahmad", 22);
+  final Human sayyab = Human("Ahmad Sayyab", 23);
+  final Human salman = Human("Salman Khan", 24);
 
-  //old
-  print('${jsoned["name"]} is a professional ${jsoned["job"]} ');
+  //old approach
+  String fullNameOfImran = imran.name;
+  int ageOfImran = imran.age;
 
-  //new
-  final {'name': username, 'job': userjob} = jsoned;
-  print("$username is a professional $userjob");
+  print("Full name: $fullNameOfImran \nAge: $ageOfImran years old\n");
 
-  //above is error prone, to check and avoid errors
-  //if condition can't have final keyword, so we specify types
-  if (jsoned case {'name': String username, 'job': String userjob}) {
-    print("Errorless way: $username is a professional $userjob");
-  } else {
-    print("Incorrect JSON");
-  }
+  //with patterns
+  final Human(:name, :age) = salman;
+  print("Full name: $name \nAge: $age years old\n");
 
-  //same thing can be done with Switch
+  //with patterns and variable names
+  final Human(name: fullNameOfSayyab, age: ageOfSayyab) = sayyab;
+  print("Full name: $fullNameOfSayyab \nAge: $ageOfSayyab years old");
+}
 
-  switch (jsoned) {
-    case {'name': String username, 'job': String userjob}:
-      print("$username is a professional $userjob");
-    //there is no break; when you write atleast one statement, dart puts break; by default in Dart 3
-    //but if you dont write any statement, dart won't put break;
-    default:
-      print("Incorrect JSON");
-  }
+class Human {
+  final String name;
+  final int age;
+
+  const Human(this.name, this.age);
 }
